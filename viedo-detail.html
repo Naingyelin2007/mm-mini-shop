@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ဗီဒီယိုအသေးစိတ်</title>
+  <style>
+    body {
+      font-family: Myanmar3, Padauk, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    video {
+      width: 100%;
+      border-radius: 6px;
+    }
+    h2 {
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+    .info {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    .note {
+      margin-top: 15px;
+      white-space: pre-wrap;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 4px;
+      min-height: 80px;
+      max-height: 150px;
+      overflow-y: auto;
+      background: #fafafa;
+    }
+    button {
+      margin-top: 20px;
+      padding: 8px 14px;
+      border: none;
+      background-color: #2196f3;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #0b7dda;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="videoDetailContainer">
+    <!-- Video detail inserted here -->
+  </div>
+
+  <button id="backBtn">ထွက်မည် (Back to Videos)</button>
+
+  <script>
+    // Function to get URL param
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    const videos = [
+      {
+        id: "v1",
+        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+        name: "ဗီဒီယိုနမူနာ ၁",
+        delivery: "Delivery ရ/မရ: ရပါသည်",
+        location: "နေရာ: ရန်ကုန်",
+        phone: "ဖုန်း: ၀၉-၇၇၇၇၇၇၇၇၇",
+        note: "ဒီဗီဒီယိုနဲ့ဆိုင်တဲ့ မှတ်ချက်များ။"
+      },
+      {
+        id: "v2",
+        videoUrl: "https://www.w3schools.com/html/movie.mp4",
+        name: "ဗီဒီယိုနမူနာ ၂",
+        delivery: "Delivery ရ/မရ: မရပါ",
+        location: "နေရာ: မန္တလေး",
+        phone: "ဖုန်း: ၀၉-၈၈၈၈၈၈၈၈၈",
+        note: "ဗီဒီယိုနဲ့ဆိုင်တဲ့ အကြောင်းအရာများ။"
+      }
+    ];
+
+    const id = getQueryParam('id');
+    const video = videos.find(v => v.id === id);
+
+    const container = document.getElementById('videoDetailContainer');
+
+    if(video){
+      container.innerHTML = `
+        <video src="${video.videoUrl}" controls autoplay></video>
+        <h2>${video.name}</h2>
+        <p class="info">${video.delivery}</p>
+        <p class="info">${video.location}</p>
+        <p class="info">${video.phone}</p>
+        <div class="note">${video.note}</div>
+      `;
+    } else {
+      container.innerHTML = "<p>ဗီဒီယို မတွေ့ပါ။</p>";
+    }
+
+    document.getElementById('backBtn').onclick = () => {
+      window.location.href = 'video.html';
+    };
+  </script>
+
+</body>
+</html>

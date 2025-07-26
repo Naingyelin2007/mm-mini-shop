@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ဗီဒီယိုစာမျက်နှာ</title>
+  <style>
+    body {
+      font-family: Myanmar3, Padauk, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+    header {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      z-index: 10;
+    }
+    button {
+      padding: 8px 14px;
+      border: none;
+      background-color: #2196f3;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #0b7dda;
+    }
+    h1 {
+      margin-top: 60px;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .video-card {
+      background: white;
+      border-radius: 6px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+    }
+    .video-card:hover {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    video {
+      width: 100%;
+      border-radius: 4px;
+    }
+    .video-name {
+      margin-top: 8px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button id="backMainBtn">Main Page</button>
+  </header>
+
+  <h1>ဗီဒီယိုစာမျက်နှာ</h1>
+
+  <div class="grid" id="videosGrid">
+    <!-- Videos will be inserted here -->
+  </div>
+
+  <script>
+    const videos = [
+      {
+        id: "v1",
+        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+        name: "ဗီဒီယိုနမူနာ ၁",
+        delivery: "Delivery ရ/မရ: ရပါသည်",
+        location: "နေရာ: ရန်ကုန်",
+        phone: "ဖုန်း: ၀၉-၇၇၇၇၇၇၇၇၇",
+        note: "ဒီဗီဒီယိုနဲ့ဆိုင်တဲ့ မှတ်ချက်များ။"
+      },
+      {
+        id: "v2",
+        videoUrl: "https://www.w3schools.com/html/movie.mp4",
+        name: "ဗီဒီယိုနမူနာ ၂",
+        delivery: "Delivery ရ/မရ: မရပါ",
+        location: "နေရာ: မန္တလေး",
+        phone: "ဖုန်း: ၀၉-၈၈၈၈၈၈၈၈၈",
+        note: "ဗီဒီယိုနဲ့ဆိုင်တဲ့ အကြောင်းအရာများ။"
+      }
+    ];
+
+    const grid = document.getElementById('videosGrid');
+
+    function openVideoDetail(video) {
+      window.location.href = `video_detail.html?id=${video.id}`;
+    }
+
+    videos.forEach(video => {
+      const div = document.createElement('div');
+      div.className = 'video-card';
+      div.onclick = () => openVideoDetail(video);
+
+      const vid = document.createElement('video');
+      vid.src = video.videoUrl;
+      vid.controls = true;
+      vid.muted = true;
+      vid.playsInline = true;
+
+      const p = document.createElement('p');
+      p.className = 'video-name';
+      p.textContent = video.name;
+
+      div.appendChild(vid);
+      div.appendChild(p);
+      grid.appendChild(div);
+    });
+
+    document.getElementById('backMainBtn').onclick = () => {
+      window.location.href = 'index.html';
+    };
+  </script>
+</body>
+</html>

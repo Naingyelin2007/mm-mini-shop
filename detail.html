@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ပစ္စည်းအသေးစိတ်</title>
+  <style>
+    body {
+      font-family: Myanmar3, Padauk, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    h2 {
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+    .info {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    .note {
+      margin-top: 15px;
+      white-space: pre-wrap;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 4px;
+      min-height: 80px;
+      max-height: 150px;
+      overflow-y: auto;
+      background: #fafafa;
+    }
+    button {
+      margin-top: 20px;
+      padding: 8px 14px;
+      border: none;
+      background-color: #2196f3;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #0b7dda;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="detailContainer">
+    <!-- Detail content will be inserted here -->
+  </div>
+
+  <script>
+    // Simulate getting item info, normally from URL or storage
+    const item = {
+      imageUrl: "https://via.placeholder.com/600x300",
+      name: "ပစ္စည်းနမူနာ ၁",
+      delivery: "Delivery ရ/မရ: ရပါသည်",
+      location: "နေရာ: ရန်ကုန်",
+      phone: "ဖုန်း: ၀၉-၇၇၇၇၇၇၇၇၇",
+      note: "ဒီမှာ စိတ်ကြိုက်ရေးချင်တာကို ရေးနိုင်တဲ့ နေရာပါ။ စာသား ၅၀၀ လုံးထိ ထည့်နိုင်ပါတယ်။",
+    };
+
+    const container = document.getElementById('detailContainer');
+
+    container.innerHTML = `
+      <img src="${item.imageUrl}" alt="${item.name}" />
+      <h2>${item.name}</h2>
+      <p class="info">${item.delivery}</p>
+      <p class="info">${item.location}</p>
+      <p class="info">${item.phone}</p>
+      <div class="note">${item.note}</div>
+      <button id="backBtn">ထွက်မည် (Back)</button>
+    `;
+
+    document.getElementById('backBtn').onclick = () => {
+      // Back to main page
+      window.location.href = 'index.html';
+    };
+  </script>
+
+</body>
+</html>

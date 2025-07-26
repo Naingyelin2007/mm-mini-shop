@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ပုံတင်မည် (Admin)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="file"],
+    textarea {
+      padding: 8px;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+    button {
+      padding: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .message {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>ပုံတင်မည် (Admin)</h2>
+
+  <form id="uploadForm">
+    <label>ပုံရွေးရန်</label>
+    <input type="file" id="imageFile" accept="image/*" required />
+
+    <label>အမည်</label>
+    <input type="text" id="name" required />
+
+    <label>Delivery ရ/မရ</label>
+    <input type="text" id="delivery" placeholder="ရ / မရ" required />
+
+    <label>နေရာ</label>
+    <input type="text" id="location" required />
+
+    <label>ဆက်သွယ်ရန် ဖုန်းနံပါတ်</label>
+    <input type="text" id="phone" required />
+
+    <label>မှတ်ချက် (၅၀၀ စာလုံးအထိ)</label>
+    <textarea id="note" maxlength="500" placeholder="ရေးချင်တာရေးပါ..."></textarea>
+
+    <button type="submit">တင်မည်</button>
+  </form>
+
+  <p class="message" id="message"></p>
+
+  <script>
+    const uploadForm = document.getElementById('uploadForm');
+    const message = document.getElementById('message');
+
+    uploadForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // ဒီနေရာမှာ ပုံကို Upload လုပ်တာ (server) ကိုချိတ်ဆက်ရန်လိုမယ်။
+      // ဒါမှမဟုတ် localStorage သို ့ IndexedDB သုံးပြီးသိမ်းမယ်။
+
+      // Example: form data ကို console.log ပြတယ်
+      const imageFile = document.getElementById('imageFile').files[0];
+      const name = document.getElementById('name').value.trim();
+      const delivery = document.getElementById('delivery').value.trim();
+      const location = document.getElementById('location').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const note = document.getElementById('note').value.trim();
+
+      if (!imageFile) {
+        alert("ပုံရွေးပါ");
+        return;
+      }
+
+      // များများသိမ်းရန်နှင့်အတူ upload logic တိုးချဲ့နိုင်ပါတယ်။
+      console.log({
+        imageFile,
+        name,
+        delivery,
+        location,
+        phone,
+        note,
+      });
+
+      message.textContent = "ပုံတင်ပြီးပါပြီ။ (သတိပြု - ဒီမှာ server နဲ့ချိတ်ဆက်ဖို့လိုသည်)";
+      uploadForm.reset();
+    });
+  </script>
+
+</body>
+</html>let images = JSON.parse(localStorage.getItem('images') || '[]');
+
+images.push({
+  id: Date.now(),
+  imageUrl,
+  name,
+  location,
+  delivery,
+  phone,
+  note
+});
+let videos = JSON.parse(localStorage.getItem('videos') || '[]');
+
+videos.push({
+  id: Date.now(),
+  videoUrl,
+  name,
+  location,
+  delivery,
+  phone,
+  note
+});
+
+localStorage.setItem('videos', JSON.stringify(videos));
+localStorage.setItem('images', JSON.stringify(images));

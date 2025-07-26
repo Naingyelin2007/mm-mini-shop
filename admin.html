@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 15px 25px;
+      font-size: 1.1rem;
+      margin: 15px;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      color: white;
+      background-color: #1976D2;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #004ba0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+
+  <button onclick="location.href='upload-image.html'">ပုံတင်မည်</button>
+  <button onclick="location.href='upload-video.html'">ဗီဒီယိုတင်မည်</button>
+
+  <br /><br />
+  <button onclick="logout()">ထွက်မည်</button>
+
+  <script>
+    function logout() {
+      // မိမိလိုအပ်သလို session/localStorage စာရင်းဖျက်နိုင်ပါတယ်
+      alert('Logout ပြီး Main Page သို့ ပြန်မည်');
+      location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

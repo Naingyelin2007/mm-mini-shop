@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ဗီဒီယိုတင်မည် (Admin)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="file"],
+    textarea {
+      padding: 8px;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+    button {
+      padding: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #1976D2;
+    }
+    .message {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>ဗီဒီယိုတင်မည် (Admin)</h2>
+
+  <form id="uploadVideoForm">
+    <label>ဗီဒီယိုရွေးရန်</label>
+    <input type="file" id="videoFile" accept="video/*" required />
+
+    <label>အမည်</label>
+    <input type="text" id="name" required />
+
+    <label>Delivery ရ/မရ</label>
+    <input type="text" id="delivery" placeholder="ရ / မရ" required />
+
+    <label>နေရာ</label>
+    <input type="text" id="location" required />
+
+    <label>ဆက်သွယ်ရန် ဖုန်းနံပါတ်</label>
+    <input type="text" id="phone" required />
+
+    <label>မှတ်ချက် (၅၀၀ စာလုံးအထိ)</label>
+    <textarea id="note" maxlength="500" placeholder="ရေးချင်တာရေးပါ..."></textarea>
+
+    <button type="submit">တင်မည်</button>
+  </form>
+
+  <p class="message" id="message"></p>
+
+  <script>
+    const uploadVideoForm = document.getElementById('uploadVideoForm');
+    const message = document.getElementById('message');
+
+    uploadVideoForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const videoFile = document.getElementById('videoFile').files[0];
+      const name = document.getElementById('name').value.trim();
+      const delivery = document.getElementById('delivery').value.trim();
+      const location = document.getElementById('location').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const note = document.getElementById('note').value.trim();
+
+      if (!videoFile) {
+        alert("ဗီဒီယိုရွေးပါ");
+        return;
+      }
+
+      console.log({
+        videoFile,
+        name,
+        delivery,
+        location,
+        phone,
+        note,
+      });
+
+      message.textContent = "ဗီဒီယိုတင်ပြီးပါပြီ။ (သတိပြု - Server နဲ့ချိတ်ဆက်ဖို့လိုသည်)";
+      uploadVideoForm.reset();
+    });
+  </script>
+
+</body>
+</html>

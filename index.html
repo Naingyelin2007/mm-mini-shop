@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Main Page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .top-buttons {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    .top-buttons button {
+      margin-left: 10px;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 80px;
+    }
+    .item {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .item img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .modal-content input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+    }
+    .error {
+      color: red;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Upload & Video Buttons -->
+  <div class="top-buttons">
+    <button onclick="location.href='video.html'">ဗီဒီယို</button>
+    <button onclick="document.getElementById('loginModal').style.display='flex'">Upload</button>
+  </div>
+
+  <h1>ပစ္စည်းပုံများ</h1>
+
+  <!-- Product Images Grid -->
+  <div class="grid" id="productGrid">
+    <!-- Example static item (can be loaded via JavaScript later) -->
+    <div class="item" onclick="location.href='detail.html'">
+      <img src="https://via.placeholder.com/200x150" alt="ပစ္စည်း">
+      <p>ပစ္စည်းအမည်</p>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <h3>Admin Login</h3>
+      <label>ဖုန်းနံပါတ်</label>
+      <input id="phoneInput" type="text" placeholder="09686246899" />
+      <label>စကားဝှက်</label>
+      <input id="passInput" type="password" placeholder="Password" />
+      <p id="errorText" class="error"></p>
+      <div style="display: flex; justify-content: space-between;">
+        <button onclick="handleLogin()">ဝင်မည်</button>
+        <button onclick="document.getElementById('loginModal').style.display='none'">ပိတ်မည်</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin() {
+      const phone = document.getElementById("phoneInput").value;
+      const password = document.getElementById("passInput").value;
+      const errorText = document.getElementById("errorText");
+
+      if (phone === "09686246899" && password === "nainG2007") {
+        window.location.href = "admin.html";
+      } else {
+        errorText.textContent = "ဖုန်းနံပါတ် သို့မဟုတ် စကားဝှက်မှားနေပါသည်။";
+      }
+    }
+  </script>
+
+</body>
+</html>
